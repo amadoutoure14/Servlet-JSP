@@ -1,5 +1,5 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +12,15 @@
     <h1>Bienvenue <%= username %>!</h1>
     <p>Liste des utilisateurs inscrits:</p>
     <ul>
-        <%-- Afficher les utilisateurs inscrits --%>
+        <%-- Récupérer la liste des utilisateurs inscrits --%>
         <% ArrayList<String> registeredUsers = (ArrayList<String>) getServletContext().getAttribute("registeredUsers");
-           if (registeredUsers != null) {
+           if (registeredUsers != null && !registeredUsers.isEmpty()) {
                for (String user : registeredUsers) { %>
                    <li><%= user %></li>
         <%     }
-           } %>
+           } else { %>
+               <li>Aucun utilisateur inscrit.</li>
+        <% } %>
     </ul>
     <form action="MonServlet2" method="post">
         <input type="submit" value="Déconnecter">
