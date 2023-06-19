@@ -7,17 +7,18 @@
     <title>Accueil</title>
 </head>
 <body>
-    <h1>Bienvenue <%= request.getParameter("fullName") %>!</h1>
+    <%-- Récupérer le nom d'utilisateur à partir de la session --%>
+    <% String username = (String) request.getSession().getAttribute("username"); %>
+    <h1>Bienvenue <%= username %>!</h1>
     <p>Liste des utilisateurs inscrits:</p>
     <ul>
-        <%
-        ArrayList<String> registeredUsers = (ArrayList<String>) request.getServletContext().getAttribute("registeredUsers");
-        if (registeredUsers != null) {
-            for (String user : registeredUsers) {
-                out.println("<li>" + user + "</li>");
-            }
-        }
-        %>
+        <%-- Afficher les utilisateurs inscrits --%>
+        <% ArrayList<String> registeredUsers = (ArrayList<String>) getServletContext().getAttribute("registeredUsers");
+           if (registeredUsers != null) {
+               for (String user : registeredUsers) { %>
+                   <li><%= user %></li>
+        <%     }
+           } %>
     </ul>
     <form action="MonServlet2" method="post">
         <input type="submit" value="Déconnecter">

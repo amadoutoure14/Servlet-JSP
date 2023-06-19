@@ -7,13 +7,13 @@
 </head>
 <body>
     <h1>Inscription</h1>
-    <form action="ServletJSP" method="post">
-        <label for="firstName">Prénom:</label>
-        <input type="text" id="firstName" name="firstName" required><br><br>
-        <label for="lastName">Nom:</label>
-        <input type="text" id="lastName" name="lastName" required><br><br>
-        <label for="username">Pseudo:</label>
-        <input type="text" id="username" name="username" required><br><br>
+    <form action="MonServlet" method="post">
+        <label for="nom">Nom:</label>
+        <input type="text" id="nom" name="nom" required><br><br>
+        <label for="prenom">Prénom:</label>
+        <input type="text" id="prenom" name="prenom" required><br><br>
+        <label for="pseudo">Pseudo:</label>
+        <input type="text" id="pseudo" name="pseudo" required><br><br>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
         <label for="password">Mot de passe:</label>

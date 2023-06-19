@@ -1,25 +1,35 @@
 import java.io.IOException;
-
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpServletResponseWrapper;
 
 @WebServlet("/MonServlet")
 public class MonServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Gérer la logique de connexion ici
-
-        String username = request.getParameter("username");
+        String nom = request.getParameter("nom");
+        String prenom = request.getParameter("prenom");
+        String pseudo = request.getParameter("pseudo");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String confirmPassword = request.getParameter("confirmPassword");
 
-        // Vérifier les informations d'identification et effectuer les actions nécessaires
+        if (password.equals(confirmPassword)) {
+            // Ajouter l'utilisateur à la liste des utilisateurs déjà inscrits
+            addUser(nom, prenom, pseudo, email, password);
 
-        response.sendRedirect("Accueil.jsp?fullName=" + username);
+            request.getSession().setAttribute("username", pseudo);
+            response.sendRedirect("Accueil.jsp");
+        } else {
+            response.sendRedirect("Inscrire.jsp?error=password");
+        }
+    }
+
+    private void addUser(String nom, String prenom, String pseudo, String email, String password) {
+        // Ajouter l'utilisateur à la base de données ou à la liste des utilisateurs enregistrés
+        // Vous pouvez utiliser une structure de données telle qu'une liste ou une base de données pour stocker les utilisateurs inscrits
     }
 }
